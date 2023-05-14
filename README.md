@@ -3,10 +3,13 @@
 
 SimpQ-Ref为SimpQ的分支版本
 相较于SimpQ-Bot,SimpQ-Ref拥有更多的功能,更优雅的界面
+
 QQGroup:[SimpQ 社区 556990446](https://qm.qq.com/cgi-bin/qm/qr?k=d5jHYYrg1XkSwuvItCCWfWxcALOxqAeM&jump_from=webapi&authKey=Qtw/AoANvNmCcSeSH9IqafXqbToZRE5aFuUtZuWJpKMmVaALfw2P9zp8orX6czjZ)
 
 # 开始
+
 **python版本建议使用3.10.9**
+
 安装运行程序所需的Package
 ```
 pip install requests
@@ -14,9 +17,10 @@ pip install flask
 pip install prompt_toolkit
 ```
 
-下载合适的go-cqhttp版本放入go-cqhttp文件夹中
-https://github.com/Mrs4s/go-cqhttp/releases
+下载合适的go-cqhttp版本放入go-cqhttp文件夹中https://github.com/Mrs4s/go-cqhttp/releases
+
 将config.yml中uin和password修改即可
+
 遇到登录错误看这篇issues-->https://github.com/Mrs4s/go-cqhttp/issues/2053
 
 将go-cqhttp填入index.py中run_cq_args变量(Windows:go-cqhttp_xxx_xxx.exe Linux:go-cqhttp)
