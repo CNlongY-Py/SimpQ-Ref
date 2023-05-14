@@ -1,5 +1,6 @@
 # SimpQ-Ref
 ![LOGO](https://github.com/CNlongY-Py/SimpQ-Bot/blob/main/doc/LOGO23-4.png)
+
 SimpQ-Ref为SimpQ的分支版本
 相较于SimpQ-Bot,SimpQ-Ref拥有更多的功能,更优雅的界面
 QQGroup:[SimpQ 社区 556990446](https://qm.qq.com/cgi-bin/qm/qr?k=d5jHYYrg1XkSwuvItCCWfWxcALOxqAeM&jump_from=webapi&authKey=Qtw/AoANvNmCcSeSH9IqafXqbToZRE5aFuUtZuWJpKMmVaALfw2P9zp8orX6czjZ)
