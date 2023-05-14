@@ -29,4 +29,4 @@ pip install prompt_toolkit
 
 ***SimpQ-Ref已经启动了,编写属于你自己的Bot吧***
 
-API文档https://docs.go-cqhttp.org/api/(终结点为函数名称)
+API文档https://docs.go-cqhttp.org/api/ (终结点为函数名称)
