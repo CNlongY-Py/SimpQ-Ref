@@ -4,7 +4,11 @@
 SimpQ-Ref为SimpQ的分支版本
 相较于SimpQ-Bot,SimpQ-Ref拥有更多的功能,更优雅的界面
 
+
+###请务必加入社区群以此获取最新Snapshot
 QQGroup:[SimpQ 社区 556990446](https://qm.qq.com/cgi-bin/qm/qr?k=d5jHYYrg1XkSwuvItCCWfWxcALOxqAeM&jump_from=webapi&authKey=Qtw/AoANvNmCcSeSH9IqafXqbToZRE5aFuUtZuWJpKMmVaALfw2P9zp8orX6czjZ)
+
+
 
 # 开始
 
