@@ -4,7 +4,9 @@ import time
 def prlog(text):
     with open("./logs/%s.log" % time.strftime("%Y-%m-%d", time.localtime()), "a", encoding="utf-8") as f:
         f.write("%s\n" % text)
-
+def erlog(text):
+    with open("./logs/ErrorLog.log", "a", encoding="utf-8") as f:
+        f.write("%s\n" % text)
 
 class Logger:
     def __init__(self, name, level, buffer):
@@ -20,6 +22,7 @@ class Logger:
                 txt += "%s " % i
             self.buffer.insert_text(f"{self.formatp}[ERROR]<{self.name}>:{txt}\n")
             prlog(f"{self.formatp}[ERROR]<{self.name}>:{txt}")
+            erlog(f"{self.formatp}[ERROR]<{self.name}>:{txt}")
 
     def warning(self, *args):
         txt = ""

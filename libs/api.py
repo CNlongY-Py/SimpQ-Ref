@@ -103,11 +103,11 @@ class API:
         return api("delete_unidirectional_friend", {"user_id": user_id})
 
     # 消息
-    def send_private_msg(self, user_id, message, group_id=None, auto_escape=False):
+    def send_private_msg(self, message, user_id, group_id=None, auto_escape=False):
         return api("send_private_msg",
                    {"user_id": user_id, "group_id": group_id, "message": message, "auto_escape": auto_escape})
 
-    def send_group_msg(self, group_id, message, auto_escape=False):
+    def send_group_msg(self, message, group_id, auto_escape=False):
         return api("send_group_msg", {"group_id": group_id, "message": message, "auto_escape": auto_escape})
 
     def send_msg(self, message_type, user_id, group_id, message, auto_escape=False):

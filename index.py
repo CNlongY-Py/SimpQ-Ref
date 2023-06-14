@@ -1,10 +1,10 @@
 # 导入运行库
-import asyncio
 import websocket
 import os
 import json
 import importlib
 import sys
+import time
 import subprocess
 #导入Flask
 from flask import Flask
@@ -23,16 +23,16 @@ from libs import loadplugin
 from libs import check
 
 # 环境变量
-version = "BETA-1.0"  # 版本信息
+version = "BETA-0.2"  # 版本信息
 level = 1  # 日志等级
 host="localhost" # 请求host
 http_host="localhost" #监听器HTTP host(可选)
-serv_port = "5700"  # 监听器PORT
-send_port = "5701"  # 请求PORT
+serv_port = "5705"  # 监听器PORT
+send_port = "5700"  # 请求PORT
 run_cq_args = ""  # cqhttp启动命令
 bot_mode="WS:HTTP" # 驱动器选择
 # 创建主窗口
-buffer1 = Buffer()
+buffer1 = Buffer(name="main")
 # 创建日志
 log = logger.Logger("Main", level, buffer1)
 # 创建命令输入窗口
@@ -53,7 +53,7 @@ def getpdl():
 
 
 # 命令系统
-def userinput(text, log):
+def userinput(text):
     log = logger.Logger("UserInput", level, buffer1)
     log.info(text)
     with open("./config/bot/commands.cdl", "r") as f:
@@ -84,7 +84,7 @@ def _(event):
 def _(event):
     if buffer2.text:
         buffer2.append_to_history()
-        userinput(buffer2.text, logger.Logger("Command", level, buffer1))
+        userinput(buffer2.text)
         buffer2.reset()
 
 
@@ -107,8 +107,7 @@ def llPlugin(data):
 
 # websocket正向驱动器
 def main():
-    print("[Warning]Websocket正在运行,按下Ctrl+C断开")
-    ws=websocket.WebSocket()
+    ws= websocket.WebSocket()
     ws.connect("ws://%s:%s"%(host,serv_port))
     while True:
         message=ws.recv()
@@ -129,7 +128,6 @@ def main():
         ws.close()
 #HTTP反向驱动器
 def httpserver():
-    print("[Warning]HTTP监听器正在运行,按下Ctrl+C断开")
     app = Flask(__name__)
 
     @app.route('/', methods=["POST"])
@@ -141,6 +139,9 @@ def httpserver():
     else:
         app.run(host=host, port=int(serv_port))
 def runServer():
+    if run_cq_args:
+        log.info("等待go-cqhttp启动,静置10s")
+        time.sleep(10)
     mode=bot_mode.split(":")[0]
     if check.serv_lock():
         if mode=="WS":
@@ -183,7 +184,7 @@ def initPlugins():
 def delpath(path):
     if os.path.isdir(path):  # 判断是不是文件夹
         for file in os.listdir(path):  # 遍历文件夹里面所有的信息返回到列表中
-            clearCache(os.path.join(path, file))  # 是文件夹递归自己
+            delpath(os.path.join(path, file))  # 是文件夹递归自己
         if os.path.exists(path):  # 判断文件夹为空
             os.rmdir(path)  # 删除文件夹
 
