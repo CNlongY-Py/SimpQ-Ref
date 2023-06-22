@@ -19,6 +19,7 @@ QQGroup:[SimpQ 社区 556990446](https://qm.qq.com/cgi-bin/qm/qr?k=d5jHYYrg1XkSw
 pip install requests
 pip install flask
 pip install prompt_toolkit
+pip install websocket-client
 ```
 
 下载合适的go-cqhttp版本放入go-cqhttp文件夹中https://github.com/Mrs4s/go-cqhttp/releases
