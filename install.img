@@ -30,6 +30,6 @@
         "libs/thread.py",
         "libs/websocket.py",
         "go-cqhttp/config.yml",
-        "config/bot/disload.pdl"
+        "config/bot/disloads.pdl"
     ]
 }
