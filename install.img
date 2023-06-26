@@ -30,6 +30,10 @@
         "libs/thread.py",
         "libs/websocket.py",
         "go-cqhttp/config.yml",
+        "go-cqhttp/go-cqhttp_windows_amd64.exe",
+        "go-cqhttp/go-cqhttp_1.0.1_linux_amd64.deb",
+        "go-cqhttp/go-cqhttp.sh",
+        "go-cqhttp/go-cqhttp.bat",
         "config/bot/disloads.pdl"
     ]
 }
