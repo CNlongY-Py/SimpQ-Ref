@@ -16,7 +16,8 @@ QQGroup:[SimpQ 社区 556990446](https://qm.qq.com/cgi-bin/qm/qr?k=d5jHYYrg1XkSw
 
 **python版本建议使用3.10.9**
 
-**![懒人部署点我](https://github.com/CNlongY-Py/SimpQ-Ref/blob/main/install.py)**
+**[懒人部署点我](https://github.com/CNlongY-Py/SimpQ-Ref/blob/main/install.py)**
+
 安装运行程序所需的Package
 ```
 pip install requests
