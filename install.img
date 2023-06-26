@@ -1,0 +1,35 @@
+{
+    "url":"https://raw.githubusercontent.com/CNlongY-Py/SimpQ-Ref/main/",
+    "package":[
+        "flask",
+        "requests",
+        "websocket-client",
+        "prompt_toolkit"
+    ],
+    "folder":[
+        "config",
+        "config/bot",
+        "config/PlugMananger",
+        "cache",
+        "go-cqhttp",
+        "libs",
+        "logs",
+        "qdb",
+        "plugins"
+    ],
+    "file":[
+        "LICENSE",
+        "index.py",
+        "plugins/MsgLog.py",
+        "plugins/PlugManager.py",
+        "libs/api.py",
+        "libs/check.py",
+        "libs/loadplugin.py",
+        "libs/logger.py",
+        "libs/qdblib.py",
+        "libs/thread.py",
+        "libs/websocket.py",
+        "go-cqhttp/config.yml",
+        "config/bot/disload.pdl"
+    ]
+}
