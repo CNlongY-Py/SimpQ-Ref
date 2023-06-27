@@ -54,19 +54,23 @@ API文档https://docs.go-cqhttp.org/api/ (终结点为函数名称)
 + OpenAI-DEV    Gpt群聊
 + status        获取Bot及协议当前状态
 + UmiLegacy     兼容SimpQ-Bot的插件
-# Snapshot-3y6m26d 更新特色
+# Snapshot-3y6m26d及Snapshot-3y6m26d-2th 更新特色
 
 启动时加上-Kmx数字即可限制物理内存
 
 例:-Kmx500 即可将物理内存限制为500MiB
 
+访问密钥 在框架和go-cqhttp设置相同的密钥
+
+即可大大加强公网服务器的安全性
 # 版本列表
-Snapshot-3y6m26d                  更新了内存限制
-Snapshot-3y6m13d >> BETA-0.2      https://github.com/CNlongY-Py/SimpQ-Ref/releases/tag/BETA
-Snapshot-3y5m29d                  修复了一些已知Bug
-Snapshot-3y5m28d                  新增内置库qdblib.py
-Snapshot-3y5m26d                  修复了监听器rjson报错
-Snapshot-3y5m25d                  优化了插件系统的加载速度
-Snapshot-3y5m14d >> BETA-0.1      第一个正式版本              
-Snapshot-3y5m10d                  修复了部分错误,新增缓存系统,新增配置系统,新增指令系统
-Snapshot-3y4m27d                  第一个快照版本
++ Snapshot-3y6m26d-2th              更新了API Token
++ Snapshot-3y6m26d                  更新了内存限制
++ Snapshot-3y6m13d >> BETA-0.2      https://github.com/CNlongY-Py/SimpQ-Ref/releases/tag/BETA
++ Snapshot-3y5m29d                  修复了一些已知Bug
++ Snapshot-3y5m28d                  新增内置库qdblib.py
++ Snapshot-3y5m26d                  修复了监听器rjson报错
++ Snapshot-3y5m25d                  优化了插件系统的加载速度
++ Snapshot-3y5m14d >> BETA-0.1      第一个正式版本              
++ Snapshot-3y5m10d                  修复了部分错误,新增缓存系统,新增配置系统,新增指令系统
++ Snapshot-3y4m27d                  第一个快照版本
