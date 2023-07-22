@@ -58,14 +58,9 @@ API文档https://docs.go-cqhttp.org/api/ (终结点为函数名称)
 + UmiLegacy     兼容SimpQ-Bot的插件
 # Snapshot-3y6m26d及Snapshot-3y6m26d-2th 更新特色
 
-启动时加上-Kmx数字即可限制物理内存
 
-例:-Kmx500 即可将物理内存限制为500MiB
-
-访问密钥 在框架和go-cqhttp设置相同的密钥
-
-即可大大加强公网服务器的安全性
 # 版本列表
++ Snapshot-3y7m22d >> BETA-0.3      新增加载器方式,优化框架性能
 + Snapshot-3y6m27d                  修复了API Token字段为空的报错
 + Snapshot-3y6m26d-2th              更新了API Token
 + Snapshot-3y6m26d                  更新了内存限制
