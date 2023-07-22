@@ -21,9 +21,10 @@ from libs import logger
 from libs import thread
 from libs import loadplugin
 from libs import check
-
+from libs import dellib
+from libs import maxm
 # 环境变量
-version = "BETA-0.2"  # 版本信息
+version = "BETA-0.3"  # 版本信息
 level = 1  # 日志等级
 host="localhost" # 请求host
 http_host="localhost" #监听器HTTP host(可选)
@@ -31,6 +32,8 @@ serv_port = "5705"  # 监听器PORT
 send_port = "5700"  # 请求PORT
 run_cq_args = ""  # cqhttp启动命令
 bot_mode="WS:HTTP" # 驱动器选择
+AuthToken="" # 验证Token
+loadType="reload" # 加载器模式(create/reload)
 # 创建主窗口
 buffer1 = Buffer(name="main")
 # 创建日志
@@ -66,11 +69,20 @@ def userinput(text):
             for i in pluginslist:
                 name = i.split(".")[0]
                 if unloadlist.count("%s\n" % i) == 0 and i != "__pycache__":
-                    plugin = importlib.import_module("plugins." + name)
-                    if a[1] == plugin.main.name:
-                        thread.create(loadplugin.runPlugin,
+                    if loadType=="create":
+                        plugin = importlib.import_module("plugins." + name)
+                        if a[1] == plugin.main.name:
+                            thread.create(loadplugin.runPlugin,
                                       (plugin, logger.Logger(plugin.main.name, level, buffer1), "commands", 0, text))
-
+                    elif loadType=="reload":
+                        modules = sys.modules.copy()
+                        if list(modules.keys()).count("plugins.%s" % name):
+                            plugin = modules["plugins.%s" % name]
+                        else:
+                            plugin = importlib.import_module("plugins." + name)
+                        if a[1] == plugin.main.name:
+                            thread.create(loadplugin.runPlugin,
+                                      (plugin, logger.Logger(plugin.main.name, level, buffer1), "commands", 0, text))
 
 def regcommand(major, name):
     with open("./config/bot/commands.cdl", "a") as f:
@@ -98,17 +110,29 @@ def llPlugin(data):
     for i in pluginslist:
         name = i.split(".")[0]
         if unloadlist.count("%s\n" % i) == 0 and i != "__pycache__":
-            plugin = importlib.import_module("plugins." + name)
-            thread.create(loadplugin.runPlugin,
+            if loadType=="create": # 适配于BETA-0.2以前的插件
+                plugin = importlib.import_module("plugins." + name)
+                thread.create(loadplugin.runPlugin,
                           (plugin, logger.Logger(plugin.main.name, level, buffer1), data["post_type"], data))
+            elif loadType=="reload": # BETA-0.3新特性,可改善性能优化开发流程
+                modules=sys.modules.copy()
+                if list(modules.keys()).count("plugins.%s"%name):
+                    plugin=modules["plugins.%s"%name]
+                else:
+                    plugin = importlib.import_module("plugins." + name)
+                thread.create(loadplugin.runPlugin,
+                              (plugin, logger.Logger(plugin.main.name, level, buffer1), data["post_type"], data))
 
 
 
 
 # websocket正向驱动器
 def main():
-    ws= websocket.WebSocket()
-    ws.connect("ws://%s:%s"%(host,serv_port))
+    ws=websocket.WebSocket()
+    if AuthToken:
+        ws.connect("ws://%s:%s"%(host,serv_port),header={"Authorization":AuthToken})
+    else:
+        ws.connect("ws://%s:%s" % (host, serv_port))
     while True:
         message=ws.recv()
         if message:
@@ -180,21 +204,21 @@ def initPlugins():
                 os.mkdir(f"./config/{plugin.main.name}")
             thread.create(loadplugin.runPlugin,
                           (plugin, logger.Logger(plugin.main.name, level, buffer1), "init", 0))
-# 递归删除文件
-def delpath(path):
-    if os.path.isdir(path):  # 判断是不是文件夹
-        for file in os.listdir(path):  # 遍历文件夹里面所有的信息返回到列表中
-            delpath(os.path.join(path, file))  # 是文件夹递归自己
-        if os.path.exists(path):  # 判断文件夹为空
-            os.rmdir(path)  # 删除文件夹
-
-    else:
-        if os.path.isfile(path):  # 严谨判断是不是文件
-            os.remove(path)  # 删除文件
 # 清理缓存
 def clearCache():
-    delpath("./cache")
+    dellib.delpath("./cache")
     os.mkdir("./cache")
+# 启动内存限制(Unix专有模块,非Unix请不要使用本模块)
+def killmx():
+    args=sys.argv
+    for i in args:
+        if i.find("-Kmx")==0:
+            mxm=i.replace("-Kmx","")
+            if mxm and mxm.isdigit():
+                log.warning("最大虚拟内存限制为%sMiB"%mxm)
+                maxm.limit_memory(1024*1024*int(mxm))
+            else:
+                log.error("启动参数错误")
 # 初始化
 def init():
     logo = """
@@ -217,6 +241,7 @@ def init():
     log.info(logo)
     check.Check()
     log.info(f"SimpQ-Ref {version} is Running")
+    killmx()
     initcommand()
     initPlugins()
     clearCache()

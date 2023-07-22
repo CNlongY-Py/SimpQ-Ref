@@ -20,7 +20,10 @@ def websocket(action,args):
             return recv
 def http(action,args):
     log = logger.Logger("API", index.level, index.buffer1)
-    response=requests.post(f"http://{index.host}:{index.send_port}/{action}",data=args)
+    if index.AuthToken:
+        response=requests.post(f"http://{index.host}:{index.send_port}/{action}",data=args,headers={"Authorization":index.AuthToken})
+    else:
+        response=requests.post(f"http://{index.host}:{index.send_port}/{action}",data=args)
     if response:
         return response.json()["data"]
     else:
@@ -70,6 +73,7 @@ class API:
 
     def getcfg(self,path): # 获取cfg中文件
         return "./config/%s/%s"%(self.plugin,path)
+
     # go-cqhttp函数
     # Bot账号
     def get_login_info(self):
@@ -180,10 +184,10 @@ class API:
         return api("get_group_system_msg")
 
     def get_essence_msg_list(self, group_id):
-        return api("get_essence_msg_list", {"group_id", group_id})
+        return api("get_essence_msg_list", {"group_id": group_id})
 
     def get_group_at_all_remain(self, group_id):
-        return api("get_group_at_all_remain", {"group_id", group_id})
+        return api("get_group_at_all_remain", {"group_id": group_id})
 
     # 群设置
     def set_group_name(self, group_id, group_name):
@@ -267,7 +271,7 @@ class API:
 
     # Go-Cqhttp相关
     def get_cookies(self, domain):
-        return api("get_cookies", {"domain", domain})
+        return api("get_cookies", {"domain": domain})
 
     def get_csrf_token(self):
         return api("get_csrf_token")
