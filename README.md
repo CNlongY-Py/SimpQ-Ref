@@ -56,8 +56,11 @@ API文档https://docs.go-cqhttp.org/api/ (终结点为函数名称)
 + OpenAI-DEV    Gpt群聊
 + status        获取Bot及协议当前状态
 + UmiLegacy     兼容SimpQ-Bot的插件
-# Snapshot-3y6m26d及Snapshot-3y6m26d-2th 更新特色
-
+# BETA-0.3 版本特色
+增加loadType变量
+可选create/reload
+create为BETA-0.3之前的加载器运作方式,较为消耗性能,每一次加载会重置模块
+reload为BETA-0.3新增的加载器运作方式,减少性能消耗,并不会重置模块内变量
 
 # 版本列表
 + Snapshot-3y7m22d >> BETA-0.3      新增加载器方式,优化框架性能
