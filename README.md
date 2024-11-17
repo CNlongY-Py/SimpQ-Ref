@@ -10,7 +10,7 @@ SimpQ-Ref为SimpQ的分支版本
 
 相较于SimpQ-Bot,SimpQ-Ref拥有更多的功能,更优雅的界面
 
-## 停止更新，请迁移至[Re-SimpQ](https://github.com/CNlongY-Py/Re-SimpQ)以获得稳定体验
+**停止更新，请迁移至[Re-SimpQ](https://github.com/CNlongY-Py/Re-SimpQ)以获得稳定体验**
 
 **请务必加入社区群以此获取最新Snapshot**
 
